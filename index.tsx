@@ -1,8 +1,7 @@
-import { type Root, type RootContent } from "hast";
-import { type Plugin } from "unified";
-import {} from "mdast-util-mdx";
-import { type MdxjsEsm, type MdxjsEsmHast } from "mdast-util-mdxjs-esm";
-
+import type { Root, RootContent } from "hast";
+import type { Plugin } from "unified";
+import type {} from "mdast-util-mdx";
+import type { MdxjsEsm, MdxjsEsmHast } from "mdast-util-mdxjs-esm";
 import type { Property } from "estree";
 
 export interface RehypeFrontmatterMdxImportsOptions {
