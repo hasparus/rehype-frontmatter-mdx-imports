@@ -1,9 +1,20 @@
 {
   "name": "rehype-frontmatter-mdx-imports",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "transform relative paths in frontmatter to MDX imports",
-  "module": "dist/rehype-frontmatter-mdx-imports.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "type": "module",
+  "files": [
+    "dist",
+    "index.tsx"
+  ],
   "scripts": {
     "build": "tsc"
   },
