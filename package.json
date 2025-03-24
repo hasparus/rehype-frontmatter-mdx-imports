@@ -1,0 +1,19 @@
+{
+  "name": "rehype-frontmatter-mdx-imports",
+  "description": "transform relative paths in frontmatter to MDX imports",
+  "module": "dist/rehype-frontmatter-mdx-imports.js",
+  "type": "module",
+  "scripts": {
+    "build": "bun build --target=node --outfile=dist/rehype-frontmatter-imports.js index.tsx"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "hast": "^1.0.0",
+    "mdast-util-mdx": "^3.0.0",
+    "mdast-util-mdxjs-esm": "^2.0.1",
+    "unified": "^11.0.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
