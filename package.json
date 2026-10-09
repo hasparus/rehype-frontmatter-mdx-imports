@@ -1,6 +1,6 @@
 {
   "name": "rehype-frontmatter-mdx-imports",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "transform relative paths in frontmatter to MDX imports",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,14 +16,19 @@
     "index.tsx"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "bun test"
   },
   "devDependencies": {
+    "@mdx-js/mdx": "3.1.1",
     "@types/bun": "latest",
     "hast": "^1.0.0",
     "mdast-util-mdx": "^3.0.0",
     "mdast-util-mdxjs-esm": "^2.0.1",
-    "unified": "^11.0.5"
+    "remark-frontmatter": "5.0.0",
+    "remark-mdx-frontmatter": "6.0.0",
+    "unified": "^11.0.5",
+    "vfile": "6.0.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
