@@ -47,6 +47,7 @@ export const rehypeFrontmatterMdxImports: Plugin<
 
     const imports = [];
     const imported = new Map();
+    const names = new Set<string>();
 
     // find frontmatter node - check for metadata, frontmatter, or data exports
     const frontMatterNode = ast.children.find((node) =>
@@ -86,7 +87,10 @@ export const rehypeFrontmatterMdxImports: Plugin<
 
       if (!name) {
         // use the property key in the variable name
-        name = `_frontMatter_${key}`;
+        const base = `_frontMatter_${String(key).replace(/[^\w$]/g, "_")}`;
+        name = base;
+        for (let i = 2; names.has(name); i++) name = `${base}_${i}`;
+        names.add(name);
 
         // create an import declaration
         imports.push({
@@ -129,7 +133,9 @@ export const rehypeFrontmatterMdxImports: Plugin<
 
 export function getFrontMatterASTObject(node: MdxjsEsmHast): Property[] {
   const [n] = node.data!.estree!.body;
-  return (n as any).declaration.declarations[0].init.properties;
+  const init = (n as any).declaration?.declarations?.[0]?.init;
+  if (init?.type !== "ObjectExpression") return [];
+  return init.properties.filter((p: any) => p.type === "Property");
 }
 
 export function isExportNode(
@@ -139,6 +145,6 @@ export function isExportNode(
   if (node.type !== "mdxjsEsm") return false;
   const n = node.data!.estree!.body[0]!;
   if (n.type !== "ExportNamedDeclaration") return false;
-  const name = (n as any).declaration?.declarations?.[0].id.name;
+  const name = (n as any).declaration?.declarations?.[0]?.id?.name;
   return varNames.includes(name);
 }

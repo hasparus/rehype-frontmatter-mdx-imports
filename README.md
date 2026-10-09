@@ -95,9 +95,9 @@ A value is imported when it's a top-level string, starts with `./` or `../`, and
 ## Caveats
 
 - Nested objects and arrays aren't traversed.
-- The import name is `_frontMatter_<key>`. Keys that aren't valid JS identifiers (`og-image`) produce invalid code, so leave them out with `keys`.
+- The import name is `_frontMatter_<key>`, with characters that aren't valid in identifiers replaced by `_` (`og-image` → `_frontMatter_og_image`).
 - Only quoted keys are matched. That's what YAML frontmatter compiles to, but a handwritten `export const metadata = { image: './a.png' }` is skipped.
-- It throws if the export isn't an object literal. remark-mdx-frontmatter emits `export const frontmatter = undefined` for files without frontmatter, so use `fileRegex` to skip those files.
+- Exports that aren't object literals, like the `export const frontmatter = undefined` remark-mdx-frontmatter emits for files without frontmatter, are left alone.
 
 ## License
 
